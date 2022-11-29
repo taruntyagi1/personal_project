@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+   
+   
+
+
+    <section  id = "main-section" >
+        <div class="container">
+    
+        <div class="row swiprow">
+            <div class="align-items-center col-md-6 d-flex">
+                <div class="slider">
+                    <h4>Finding These Symptoms Relatable?</h4>
+                    <div class="line"></div>
+                    <p>KNOW THE ROOT CAUSE!</p>
+                    <div class ="test-btn">
+                        <a href="">TAKE DEFICIENCY TEST
+                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <img src="https://instaeats.in/static/new_templates_assets/images/slider_img_01.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    </section>
+    
+    <section class="products">
+        <div class="container-fluid">
+            {% for object in products  %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{object.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{object.product_name}}</h5>
+                  <p class="card-text">{{object.description}}</p>
+                  <a href="{% url 'add_cart' product_id=object.id %}" class="btn btn-primary">ADD TO CART</a>
+                </div>
+              </div>
+              {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
+<script>
+var side_nav = document.querySelector('#nav')
+var nav_btn  = document.querySelector('#nav-btn')
+var close_btn = document.querySelector('.btn-close')
+let tst_btn = document.querySelector('.test-btn')
+
+nav_btn.onclick = function(){
+    side_nav.style.left = "0";
+    tst_btn.style.display = "none";
+
+}
+
+close_btn.onclick = function(){
+    side_nav.style.left = "-600px";
+    tst_btn.style.display ="block";
+    
+}
+
+</script>
+
+{% endblock content %}

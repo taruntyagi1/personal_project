@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="card" id = "cart-card" style="width: 18rem;">
+    
+    {% for object in cart_items  %}
+    <div class="card-body" style = "display:flex;">
+        <div class="cart-image">
+            <img src = "{{object.product.image.url}}" class="card-img-top" alt="...">
+        </div>
+        <div class="prd-cart">
+            <div class="prd-title">
+                <p>{{object.product.product_name}}</p>
+            </div>
+            <div class="qty">
+                <p>Qty :<span class= "cart-qty">1</span></p>
+            </div>
+            <div class="prd-dis">
+                <p>{{object.product.description}}</p>
+            </div>
+            <div class="qty mt-5">
+                <span class="minus bg-dark">-</span>
+                <input type="number" class="count" name="qty" value="1">
+                <span class="plus bg-dark">+</span>
+            </div>
+            <div class="prd-amnt">
+                <p>₹ <span>1337</span></p>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class = "cart-price">
+        <p>Total</p>
+        <span class = "crt_price">₹1337</span>
+    </div>
+    <div class="cart_price">
+        <a href="">Proceed To Checkout</a>
+    </div>
+   
+    {% endfor %}
+</div>
+  
+
+
+{% endblock content %}
+
+
+
+

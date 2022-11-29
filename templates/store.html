@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="products">
+    <div class="container-fluid">
+        {% for object in product  %}
+       
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{object.image.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{object.product_name}}</h5>
+              <p class="card-text">{{object.description}}</p>
+
+              {% if object.stock <= 0 %}
+              <h4 style ="color: red;">OUT OF STOCK</h4>
+              {% else %}
+              <a href="{% url 'add_cart' product_id=object.id %}" class="btn btn-primary">ADD TO CART</a>
+              {% endif %}
+            </div>
+          </div>
+          
+          {% endfor %}
+        
+    </div>
+    
+</section>
+
+
+<script>
+    var side_nav = document.querySelector('#nav')
+    var nav_btn  = document.querySelector('#nav-btn')
+    var close_btn = document.querySelector('.btn-close')
+    let tst_btn = document.querySelector('.test-btn')
+    
+    nav_btn.onclick = function(){
+        side_nav.style.left = "0";
+        tst_btn.style.display = "none";
+    
+    }
+    
+    close_btn.onclick = function(){
+        side_nav.style.left = "-600px";
+        tst_btn.style.display ="block";
+        
+    }
+    
+    </script>
+
+
+
+{% endblock content %}
